@@ -31,12 +31,14 @@ spec:
         app: snapshot-controller
     spec:
       serviceAccount: snapshot-controller
+      imagePullSecrets:
+      - name: ironbank-secret
       containers:
         - name: snapshot-controller
           # TODO GG: Replace w/ v5.0.0 once released
           # https://github.com/kubernetes-csi/external-snapshotter/issues/610
-          image: gcr.io/k8s-staging-sig-storage/snapshot-controller:v5.0.0-rc1
+          image: registry1.dso.mil/ironbank/opensource/kubernetes-sigs/sig-storage/snapshot-controller:v3.0.3
           args:
-            - "--v=5"
+            - "--v=3"
             - "--leader-election=true"
           imagePullPolicy: IfNotPresent
